@@ -2,8 +2,24 @@
 <html>
     <head>
         <title>test page</title>
+        <script src="require.js"></script>
+        <link href="css/audio-element.css" rel="stylesheet">
     </head>
-    <body>
-
+    <body style="background: #07557c;">
+        <div id="container"></div>
+        <script>
+            var container = document.getElementById("container");
+            require.config({
+                baseUrl:"src"
+            });
+            require(["audio-element"], function(AudioElement) {
+                var audioElement = AudioElement({
+                    source: "hungarian_dance",
+                    fileTypes: "all"
+                });
+                window.audioElement = audioElement;
+                container.appendChild( window.audioElement.render() );
+            });
+        </script>
     </body>
 </html>

@@ -1,6 +1,6 @@
 define([
     "core/initialize"
-], function() {
+], function(AudioElement) {
     return AudioElement;
 });
 
