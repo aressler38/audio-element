@@ -1,16 +1,15 @@
-.play-button-bg {
-    top: 38.7%;
-    left: 44%;
+.play-button-triangle {
+    /*
     position: absolute;
     background: transparent;
     border-bottom: 73px solid transparent;
     border-left: 117px solid #1e1;
     border-top: 73px solid transparent;
     z-index: 50;
+    */
 }
-.play-button-triangle {
-    top: 38%;
-    left: 38%;
+.play-button-bg {
+    /*
     position: absolute;
     border-radius: 50%;
     background: green;
@@ -19,10 +18,10 @@
     background-image: -webkit-radial-gradient(center center, circle contain, green 80%, #1a2 99%);
     opacity: .6;
     z-index: 0;
+    */
 }
 .play-button-overlay {
-    top: 38%;
-    left: 38%;
+    /*
     position: absolute;
     border-radius: 50%;
     width: 162px;
@@ -30,4 +29,5 @@
     background-image: -webkit-radial-gradient(center center, circle contain, white 10%, transparent 50%);
     opacity: 0.4;
     z-index: 100;
+    */
 }

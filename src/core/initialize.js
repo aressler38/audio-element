@@ -1,4 +1,6 @@
-define(function() {
+define([
+    "buttons"
+], function(buttons) {
     /** 
      * @factory
      */
@@ -15,24 +17,9 @@ define(function() {
 
         function render () {
             var audioContainer = document.createElement("div");
-            var playButton = new (function (){
-                var circle, triangle, overlay, _play;
-                _play    = document.createElement("div");
-                circle   = document.createElement("div");
-                triangle = document.createElement("div");
-                overlay  = document.createElement("div");
-                circle.setAttribute("class", "play-button-bg");
-                triangle.setAttribute("class", "play-button-triangle");
-                overlay.setAttribute("class", "play-button-overlay");
-                _play.appendChild(circle);
-                _play.appendChild(triangle);
-                _play.appendChild(overlay);
-                return _play;
-            });
-            this.playButton = playButton;
+            this.playButton = buttons.play();
             
             audioContainer.appendChild(this.playButton); 
-
             return audioContainer;
         }
         
