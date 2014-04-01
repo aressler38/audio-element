@@ -5,7 +5,7 @@
             factory( global, true ) :
             function( w ) {
                 if ( !w.document ) {
-                    throw new Error( "dexter requires a window with a document" );
+                    throw new Error( "Must run in a window with a document." );
                 }
                 return factory( w );
             };
