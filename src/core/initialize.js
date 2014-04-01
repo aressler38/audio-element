@@ -20,6 +20,7 @@ define([
             this.playButton = buttons.play();
             
             audioContainer.appendChild(this.playButton); 
+            audioContainer.appendChild(this.audio);
             bindEvents.call(this);
             return audioContainer;
         }
@@ -55,12 +56,14 @@ define([
                 if (fileTypes === undefined) {
                     source = document.createElement("source");    
                     source.setAttribute("src", sources[i]);
+                    source.setAttribute("type", "audio/"+sources[i].replace("mp3", "mpeg"));
                 }
                 else {
                     buff=fileTypes.length;
                     for (j=0; j<buff; j++) {
                         source = document.createElement("source");    
                         source.setAttribute("src", sources[i]+"."+fileTypes[j]);
+                        source.setAttribute("type", "audio/"+fileTypes[j].replace("mp3", "mpeg"));
                         audio.appendChild(source);
                     }
                 }
