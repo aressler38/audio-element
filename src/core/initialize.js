@@ -12,7 +12,7 @@ define([
 
 
         function play () {
-
+            this.audio.play();
         }
 
         function render () {
@@ -20,17 +20,23 @@ define([
             this.playButton = buttons.play();
             
             audioContainer.appendChild(this.playButton); 
+            bindEvents.call(this);
             return audioContainer;
         }
         
         function parseFileTypes(type) {
-            var types = ["mp3", "ogg", "wav"];
+            var types = ["ogg", "mp3", "wav"];
             switch(type) {
                 case "all":
                     return types;
                 default:
                     return types;
             }
+        }
+
+        function bindEvents() {
+            var that = this;
+            this.playButton.addEventListener("click", function() {that.play();});
         }
 
         return (new function() {
@@ -62,6 +68,9 @@ define([
 
             this.audio = audio;
             this.render = render;
+            this.play = play;
+
+
         });
     };
 
