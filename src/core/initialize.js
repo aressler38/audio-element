@@ -20,7 +20,8 @@ define([
             this.playButton = buttons.play();
             
             audioContainer.appendChild(this.playButton); 
-            audioContainer.appendChild(this.audio);
+            // TODO: do we really need to append the <audio> element to the DOM?
+            //audioContainer.appendChild(this.audio);
             bindEvents.call(this);
             return audioContainer;
         }
