@@ -9,8 +9,7 @@ module.exports = function( grunt ) {
         return data;
     }
 
-    var gzip = require( "gzip-js" ),
-        srcHintOptions = readOptionalJSON( "src/.jshintrc" );
+    var srcHintOptions = readOptionalJSON( "src/.jshintrc" );
 
     // The concatenated file won't pass onevar
     // But our modules can
@@ -19,17 +18,6 @@ module.exports = function( grunt ) {
     grunt.initConfig({
         pkg: grunt.file.readJSON( "package.json" ),
         dst: readOptionalJSON( "dist/.destination.json" ),
-        compare_size: {
-            files: [ "dist/audio-element.js", "dist/audio-element.min.js" ],
-            options: {
-                compress: {
-                    gz: function( contents ) {
-                        return gzip.zip( contents, {} ).length;
-                    }
-                },
-                cache: "build/.sizecache.json"
-            }
-        },
         build: {
             all: {
                 dest: "dist/audio-element.js",
@@ -77,13 +65,6 @@ module.exports = function( grunt ) {
             gruntfile: "Gruntfile.js",
             tasks: "build/tasks/*.js"
         },
-        testswarm: {
-            tests: "ajax attributes callbacks core css data deferred dimensions effects event manipulation offset queue selector serialize support traversing Sizzle".split( " " )
-        },
-        watch: {
-            files: [ "<%= jshint.all.src %>" ],
-            tasks: "dev"
-        },
         uglify: {
             all: {
                 files: {
@@ -113,12 +94,9 @@ module.exports = function( grunt ) {
     // Integrate specific tasks
     grunt.loadTasks( "build/tasks" );
 
-    // Alias bower to bowercopy
-    grunt.registerTask( "bower", "bowercopy" );
-
     // Short list as a high frequency watch task
     grunt.registerTask( "dev", [ "build:*:*", "jshint", "jscs" ] );
 
     // Default grunt
-    grunt.registerTask( "default", [ "jsonlint", "dev", "uglify", "compare_size" ] );
+    grunt.registerTask( "default", [ "jsonlint", "dev", "uglify" ] );
 };

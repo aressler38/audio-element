@@ -15,8 +15,8 @@ module.exports = function( grunt ) {
             skipSemiColonInsertion: true,
 
             wrap: {
-                startFile: "src/header.js",
-                endFile: "src/footer.js"
+                startFile: "src/header.part",
+                endFile: "src/footer.part"
             },
 
             paths: {
@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
         // Convert var modules
         if ( /.\/var\//.test( path ) ) {
             contents = contents
-                .replace( /define\([\w\W]*?return/, "var " + (/var\/([\w-]+)/.exec(name)[1]) + " =" )
+                .replace( /define\([\w\W]*?return\s/, "var " + (/var\/([\w-]+)/.exec(name)[1]) + " = " )
                 .replace( rdefineEnd, "" );
         }
         else {
