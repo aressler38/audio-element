@@ -1,0 +1,6 @@
+[submodule "utils/messenger"]
+	path = utils/messenger
+	url = https://github.com/aressler38/messenger.git
+[submodule "src/utils/messenger"]
+	path = src/utils/messenger
+	url = https://github.com/aressler38/messenger.git

@@ -1,25 +1,34 @@
 define([
-    "buttons"
-], function(buttons) {
+    "buttons",
+    "utils/extend",
+    "utils/messenger"
+], function(buttons, extend, messenger) {
     /** 
      * @factory
      */
     var AudioElement = function AudioElement(config) {
         config = config || {};
+        var DEFAULTS = {
+            buttonSize: 16
+        };
+        extend(true, config, DEFAULTS);
 
         // TODO: bring in extend() and a read-only defaults JSON
         // config should be a mixin to the defaults.
-
 
         function play () {
             this.audio.play();
         }
 
+        function pause () {
+            this.audio.pause();
+        }
+        
         function render () {
             var audioContainer = document.createElement("div");
             this.playButton = buttons.play();
             
-            audioContainer.appendChild(this.playButton); 
+            audioContainer.appendChild(this.playButton.render(config.buttonSize)); 
             // TODO: do we really need to append the <audio> element to the DOM?
             //audioContainer.appendChild(this.audio);
             bindEvents.call(this);
@@ -38,7 +47,7 @@ define([
 
         function bindEvents() {
             var that = this;
-            this.playButton.addEventListener("click", function() {that.play();});
+            this.playButton.button.addEventListener("click", function() {that.play();});
         }
 
         return (new function() {
