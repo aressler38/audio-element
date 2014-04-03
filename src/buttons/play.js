@@ -4,6 +4,7 @@ define([
 ], function(vendors, setStyle) {
     var PlayButton = function(config) {
         return new (function (){
+            var triangleOffset = 3;
             var scale   = 10; // size in pixels of circle radius
             var venLen = vendors.length; 
             var i;
@@ -52,11 +53,11 @@ define([
                 position    : "absolute",
                 background  : "transparent",
                 left        : xTrans + "px",
-                top         : yTrans + "px",
+                top         : yTrans+triangleOffset + "px",
                 zIndex      : 50,
-                borderBottom: scale*sin60 + "px solid transparent",
-                borderTop   : scale*sin60 + "px solid transparent",
-                borderLeft  : ((scale<<1) - xTrans) + "px solid #1E1"
+                borderBottom: scale*sin60 - triangleOffset + "px solid transparent",
+                borderTop   : scale*sin60 - triangleOffset + "px solid transparent",
+                borderLeft  : ((scale<<1) - xTrans - triangleOffset) + "px solid #1E1"
             }
 
             // setting styles
@@ -85,10 +86,10 @@ define([
                 };
                 var triangleStyles = {
                     left        : xTrans + "px",
-                    top         : yTrans + "px",
-                    borderBottom: scale*sin60 + "px solid transparent",
-                    borderTop   : scale*sin60 + "px solid transparent",
-                    borderLeft  : ((scale << 1) - xTrans) + "px solid #1E1"
+                    top         : yTrans+ triangleOffset + "px",
+                    borderBottom: scale*sin60 - triangleOffset + "px solid transparent",
+                    borderTop   : scale*sin60 - triangleOffset + "px solid transparent",
+                    borderLeft  : ((scale<<1) - xTrans - triangleOffset) + "px solid #1E1"
                 };
                 var overlayStyles = {
                     width        : (scale << 1) + "px",

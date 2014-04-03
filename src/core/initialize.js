@@ -1,7 +1,7 @@
 define([
     "buttons",
     "utils/extend",
-    "utils/messenger"
+    "utils/messenger/messenger_amd"
 ], function(buttons, extend, messenger) {
     /** 
      * @factory
@@ -9,9 +9,13 @@ define([
     var AudioElement = function AudioElement(config) {
         config = config || {};
         var DEFAULTS = {
-            buttonSize: 16
+            buttonSize:15 
         };
         extend(true, config, DEFAULTS);
+
+        if (typeof config.onplay === "function") {
+            messenger.on("play", config.onplay);
+        }
 
         // TODO: bring in extend() and a read-only defaults JSON
         // config should be a mixin to the defaults.
