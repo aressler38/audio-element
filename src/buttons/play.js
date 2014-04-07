@@ -35,6 +35,7 @@ define([
 
             for (i=0;i<venLen;i++) {
                 circle.style.backgroundImage = vendors[i]+"radial-gradient(center center, circle contain, green 80%, #1a2 99%)";
+                circle.style.boxShadow = vendors[i]+"inset 9px 4px 4px 0px #a93939";
             }
 
             // OVERLAY STYLES
@@ -68,7 +69,9 @@ define([
             triangle = setStyle(triangle, triangleStyles);
             overlay = setStyle(overlay, overlayStyles);
             _play = setStyle(_play, {
-                position: "absolute"
+                position: "absolute",
+                top: 0,
+                left: 0
             });
 
             // appending secondary divs

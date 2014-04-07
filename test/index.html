@@ -4,22 +4,44 @@
         <title>test page</title>
         <script src="require.js"></script>
         <link href="css/audio-element.css" rel="stylesheet">
+        <style>
+            .player {
+                position: relative;
+                margin: 10px;
+                float:left;
+                width: 36px;
+                height: 36px;
+            }
+        </style>
     </head>
     <body style="background: #07557c;">
         <div id="container"></div>
         <script>
             var container = document.getElementById("container");
+
+            var divs     = [];
+            var max_divs = 100;
+
+            for (var i=0; i<max_divs; i++) {
+                divs.push(document.createElement("div"));
+            }
+            divs.forEach(function(div) {
+                div.setAttribute("class", "player");
+                container.appendChild(div);
+            });
             require.config({
                 baseUrl:"src"
             });
             require(["audio-element"], function(AudioElement) {
-                var audioElement = AudioElement({
-                    source: "test/47",
-                    fileTypes: ["ogg", "mp3"],
-                    buttonRadius: 40
+                divs.forEach(function(div) {
+                    var audioElement = AudioElement({
+                        source: "test/47",
+                        fileTypes: ["ogg", "mp3"],
+                        buttonRadius: 16 
+                    });
+                    window.audioElement = audioElement;
+                    div.appendChild( window.audioElement.render() );
                 });
-                window.audioElement = audioElement;
-                container.appendChild( window.audioElement.render() );
             });
         </script>
     </body>
