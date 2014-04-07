@@ -3,15 +3,18 @@ define([
     "var/setStyle"
 ], function(vendors, setStyle) {
     var PlayButton = function(config) {
-        return new (function (){
+        config = config || {};
+        return new (function () {
             var triangleOffset = 3;
-            var scale   = 10; // size in pixels of circle radius
+            var _scale   = config.buttonRadius || 10; // size in pixels of circle radius
+            var _inset   = config.inset || 3;
+            var triangleColor = config.triangleColor || "#1fa";
             var venLen = vendors.length; 
             var i;
             var circle, triangle, overlay, _play;
             var sin60   = Math.sqrt(3.0) / 2.0;
-            var xTrans  = scale >> 1;
-            var yTrans  = scale - sin60*scale;
+            var xTrans  = _scale >> 1;
+            var yTrans  = _scale - sin60*_scale;
 
             // _play is the parent div to which we propagate events and capture them
             _play    = document.createElement("div");
@@ -26,8 +29,8 @@ define([
             	background   : "green",
                 opacity      : 0.6,
                 zIndex       : 0,
-            	width        : (scale << 1) + "px",
-            	height       : (scale << 1) + "px"
+            	width        : (_scale << 1) + "px",
+            	height       : (_scale << 1) + "px"
             };
 
             for (i=0;i<venLen;i++) {
@@ -41,8 +44,8 @@ define([
             	background   : "green",
                 opacity      : 0.4,
                 zIndex       : 100,
-            	width        : (scale << 1) + "px",
-            	height       : (scale << 1) + "px"
+            	width        : (_scale << 1) + "px",
+            	height       : (_scale << 1) + "px"
             };
             for (i=0;i<venLen;i++) {
                 overlay.style.backgroundImage = vendors[i]+"radial-gradient(center center, circle contain, white 10%, transparent 50%)";
@@ -55,9 +58,9 @@ define([
                 left        : xTrans + "px",
                 top         : yTrans+triangleOffset + "px",
                 zIndex      : 50,
-                borderBottom: scale*sin60 - triangleOffset + "px solid transparent",
-                borderTop   : scale*sin60 - triangleOffset + "px solid transparent",
-                borderLeft  : ((scale<<1) - xTrans - triangleOffset) + "px solid #1E1"
+                borderBottom: _scale*sin60 - triangleOffset + "px solid transparent",
+                borderTop   : _scale*sin60 - triangleOffset + "px solid transparent",
+                borderLeft  : ((_scale<<1) - xTrans - triangleOffset) + "px solid "+triangleColor
             }
 
             // setting styles
@@ -77,7 +80,11 @@ define([
             this.button = _play;
 
             // RENDER
-            this.render = function render(scale) {
+            this.render = function render(config) {
+                config = config || {};
+                var scale = config.scale || _scale;
+                var tColor = config.triangleColor || triangleColor;
+                
                 xTrans  = scale >> 1;
                 yTrans  = scale - sin60*scale;
                 var circleStyles = {
@@ -89,7 +96,7 @@ define([
                     top         : yTrans+ triangleOffset + "px",
                     borderBottom: scale*sin60 - triangleOffset + "px solid transparent",
                     borderTop   : scale*sin60 - triangleOffset + "px solid transparent",
-                    borderLeft  : ((scale<<1) - xTrans - triangleOffset) + "px solid #1E1"
+                    borderLeft  : ((scale<<1) - xTrans - triangleOffset) + "px solid "+tColor
                 };
                 var overlayStyles = {
                     width        : (scale << 1) + "px",
