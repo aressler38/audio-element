@@ -15,7 +15,8 @@
             require(["audio-element"], function(AudioElement) {
                 var audioElement = AudioElement({
                     source: "test/47",
-                    fileTypes: "all"
+                    fileTypes: ["ogg", "mp3"],
+                    buttonRadius: 40
                 });
                 window.audioElement = audioElement;
                 container.appendChild( window.audioElement.render() );

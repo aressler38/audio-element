@@ -13,17 +13,11 @@ define([
         var DEFAULTS = {
             buttonRadius:15  // number of pixes from the center to the edge of a disk
         };
-        var messenger = new Messenger();
 
-        extend(true, config, DEFAULTS);
-
-        if (typeof config.onplay === "function") {
-            messenger.on("play", config.onplay);
-        }
-
-        // TODO: bring in extend() and a read-only defaults JSON
-        // config should be a mixin to the defaults.
-
+        // Set Factory Defaults
+        extend(true, DEFAULTS, config);
+        config = DEFAULTS;
+        
         function play () {
             this.audio.play();
             this.trigger("play"); 
@@ -35,15 +29,21 @@ define([
         }
         
         function render () {
-            var audioContainer = document.createElement("div");
+            var audioContainer  = document.createElement("div");
+            var buttonContainer =  document.createElement("div");
             this.playButton     = buttons.play({buttonRadius:config.buttonRadius});
             this.pauseButton    = buttons.pause({buttonRadius:config.buttonRadius}); 
             hideButton.call(this, "pause");
+
+            audioContainer.setAttribute("class", "audio-element container");
+            buttonContainer.setAttribute("class", "audio-element button-container");
             
-            audioContainer.appendChild(this.playButton.render()); 
-            audioContainer.appendChild(this.pauseButton.render()); 
+            buttonContainer.appendChild(this.playButton.render()); 
+            buttonContainer.appendChild(this.pauseButton.render()); 
+            audioContainer.appendChild(buttonContainer);
             // TODO: do we really need to append the <audio> element to the DOM?
             //audioContainer.appendChild(this.audio);
+            // I don't think we need to as long as we keep a reference in memory...
             bindEvents.call(this);
             return audioContainer;
         }
@@ -51,6 +51,7 @@ define([
         function hideButton(name) {
             setStyle(this[name+"Button"].button, {display:"none"});
         }
+
         function showButton(name) {
             setStyle(this[name+"Button"].button, {display:"block"});
         }
@@ -72,16 +73,17 @@ define([
         }
         
         function parseFileTypes(type) {
-            switch(type) {
-                case "all":
-                    return fileTypes;
-                case type instanceof Array:
-                    for (var i=0, len=type.length; i<len; i++) {
-                        type[i] = type[i].toLowerCase();
-                    }
-                    return type;
-                default:
-                    return fileTypes;
+            if (type === "all") {
+                return fileTypes;
+            }
+            else if (type instanceof Array) {
+                for (var i=0, len=type.length; i<len; i++) {
+                    type[i] = type[i].toLowerCase();
+                }
+                return type;
+            }
+            else {
+                return fileTypes;
             }
         }
 
@@ -106,7 +108,7 @@ define([
 
         // THIS IS YOUR AUDIO ELEMENT OBJECT
         return (new function() {
-            extend(true, this, messenger);
+            extend(true, this, new Messenger());
             var sources; 
             if (typeof config.source === "string")  sources = [config.source];
             if (typeof config.sources === "string") sources = [config.sources];
