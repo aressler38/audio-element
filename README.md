@@ -15,7 +15,6 @@ Example usage:
     });
     document.body.appendChild( audioElement.render() );
 
-Where, 
 * source is a string that defines the path to the audio file. Don't include a file extension.
 * fileTypes is a list of file exensions that will be appended to the source. If you have .ogg and .mp3
   files in the same directory and excluding the file extension, their names are identical, then you
