@@ -22,16 +22,8 @@ module.exports = function( grunt ) {
             all: {
                 dest: "dist/audio-element.js",
                 minimum: [
-                    "core",
-                    "selector"
-                ],
-                // Exclude specified modules if the module matching the key is removed
-                removeWith: {
-                    ajax: [ "manipulation/_evalUrl" ],
-                    callbacks: [ "deferred" ],
-                    css: [ "effects", "dimensions", "offset" ],
-                    sizzle: [ "css/hiddenVisibleSelectors", "effects/animatedSelector" ]
-                }
+                    "core"
+                ]
             }
         },
         jsonlint: {
@@ -71,7 +63,7 @@ module.exports = function( grunt ) {
                     "dist/audio-element.min.js": [ "dist/audio-element.js" ]
                 },
                 options: {
-                    preserveComments: false,
+                    preserveComments: "some",
                     sourceMap: "dist/audio-element.min.map",
                     sourceMappingURL: "audio-element.min.map",
                     report: "min",
@@ -98,5 +90,6 @@ module.exports = function( grunt ) {
     grunt.registerTask( "dev", [ "build:*:*", "jshint", "jscs" ] );
 
     // Default grunt
-    grunt.registerTask( "default", [ "jsonlint", "dev", "uglify" ] );
+    grunt.registerTask( "default", [ "build", "uglify" ] );
+    
 };

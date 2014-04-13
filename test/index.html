@@ -3,7 +3,7 @@
     <head>
         <title>test page</title>
         <script src="require.js"></script>
-        <link href="css/audio-element.css" rel="stylesheet">
+        <script src="../dist/audio-element.min.js"></script>
         <style>
             .player {
                 position: relative;
@@ -32,7 +32,7 @@
             require.config({
                 baseUrl:"src"
             });
-            require(["audio-element"], function(AudioElement) {
+            //require(["../dist/audio-element.min"], function(AudioElement) {
                 divs.forEach(function(div) {
                     var audioElement = AudioElement({
                         source: "test/47",
@@ -42,7 +42,7 @@
                     window.audioElement = audioElement;
                     div.appendChild( window.audioElement.render() );
                 });
-            });
+            //});
         </script>
     </body>
 </html>

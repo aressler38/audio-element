@@ -1,9 +1,5 @@
 define([
-    "core",
-    "exports/amd",
-    "exports/global"
+    "core/initialize"
 ], function(AudioElement) {
     return AudioElement;
 });
-
-

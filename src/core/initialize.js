@@ -1,5 +1,5 @@
 define([
-    "buttons",
+    "var/buttons",
     "utils/extend",
     "utils/messenger/messenger_amd",
     "var/setStyle"

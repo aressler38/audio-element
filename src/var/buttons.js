@@ -1,10 +1,10 @@
 define([
     "buttons/play",
     "buttons/pause"
-], function(play, pause) {
+], function(PlayButton, PauseButton) {
     // returns the available buttons in an object
     return ({
-        play: play,
-        pause: pause
+        play: PlayButton,
+        pause: PauseButton
     });
 });

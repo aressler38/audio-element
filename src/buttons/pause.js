@@ -3,7 +3,7 @@ define([
     "var/setStyle",
     "utils/extend"
 ], function(vendors, setStyle, extend) {
-    var PlayButton = function(config) {
+    var PauseButton = function(config) {
         config = config || {};
         return new (function () {
             var triangleOffset = 3;
@@ -80,5 +80,5 @@ define([
             return this;
         });
     };
-    return PlayButton;
+    return PauseButton;
 });
