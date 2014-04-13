@@ -40,6 +40,13 @@ define([
             
             buttonContainer.appendChild(this.playButton.render()); 
             buttonContainer.appendChild(this.pauseButton.render()); 
+
+            audioContainer = setStyle(audioContainer, {
+                position : "relative",
+                width    : config.buttonRadius *2+"px",
+                height   : config.buttonRadius *2+"px"
+            });
+            console.log(audioContainer);
             audioContainer.appendChild(buttonContainer);
             // TODO: do we really need to append the <audio> element to the DOM?
             //audioContainer.appendChild(this.audio);
