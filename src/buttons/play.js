@@ -33,9 +33,11 @@ define([
             	height       : (_scale << 1) + "px"
             };
 
-            for (i=0;i<venLen;i++) {
-                circle.style.backgroundImage = vendors[i]+"radial-gradient(center center, circle contain, green 80%, #1a2 99%)";
-                circle.style.boxShadow = vendors[i]+"inset 9px 4px 4px 0px #a93939";
+            if (config.triangleOnly) {
+                for (i=0;i<venLen;i++) {
+                    circle.style.backgroundImage = vendors[i]+"radial-gradient(center center, circle contain, green 80%, #1a2 99%)";
+                    circle.style.boxShadow = vendors[i]+"inset 9px 4px 4px 0px #a93939";
+                }
             }
 
             // OVERLAY STYLES
@@ -48,8 +50,11 @@ define([
             	width        : (_scale << 1) + "px",
             	height       : (_scale << 1) + "px"
             };
-            for (i=0;i<venLen;i++) {
-                overlay.style.backgroundImage = vendors[i]+"radial-gradient(center center, circle contain, white 10%, transparent 50%)";
+
+            if (config.triangleOnly) {
+                for (i=0;i<venLen;i++) {
+                    overlay.style.backgroundImage = vendors[i]+"radial-gradient(center center, circle contain, white 10%, transparent 50%)";
+                }
             }
 
             // TRIANGLE STYLES
@@ -75,9 +80,9 @@ define([
             });
 
             // appending secondary divs
-            _play.appendChild(circle);
+            if (!config.triangleOnly) _play.appendChild(circle);
             _play.appendChild(triangle);
-            _play.appendChild(overlay);
+            if (!config.triangleOnly) _play.appendChild(overlay);
 
             // This is the button element.
             this.button = _play;
