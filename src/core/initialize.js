@@ -46,7 +46,6 @@ define([
                 width    : config.buttonRadius *2+"px",
                 height   : config.buttonRadius *2+"px"
             });
-            console.log(audioContainer);
             audioContainer.appendChild(buttonContainer);
             // TODO: do we really need to append the <audio> element to the DOM?
             //audioContainer.appendChild(this.audio);
