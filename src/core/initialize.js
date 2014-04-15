@@ -31,12 +31,8 @@ define([
         function render () {
             var audioContainer  = document.createElement("div");
             var buttonContainer =  document.createElement("div");
-            this.playButton     = buttons.play({ 
-                buttonRadius:config.buttonRadius,
-                triangleColor: config.triangleColor,
-                triangleOnly: config.triangleOnly
-            });
-            this.pauseButton    = buttons.pause({buttonRadius:config.buttonRadius}); 
+            this.playButton     = buttons.play(config);
+            this.pauseButton    = buttons.pause(config); 
             hideButton.call(this, "pause");
 
             audioContainer.setAttribute("class", "audio-element container");

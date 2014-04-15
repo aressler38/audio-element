@@ -11,6 +11,10 @@ define([
             var _inset   = config.inset || 3;
             var rectInset = config.rectInset || 4; 
             var pauseBGColor = config.pauseBGColor || "#959800";
+            var pauseColor = config.pauseColor || "#959800";
+            var pauseBoxShadow = config.pauseBoxShadow || "inset 4px 2px 2px 2px #cc0";
+            var pauseRectOpacity = config.pauseRectOpacity || 0.9;
+            var pauseOpacity = config.pauseOpacity || 0.8;
             var venLen = vendors.length; 
             var i;
             var circle, triangle, overlay, _pause;
@@ -34,7 +38,7 @@ define([
                 left         : PHI/2 + "px",
                 borderRadius : "15%",
                 background   : pauseBGColor,
-                opacity      : 0.8,
+                opacity      : pauseOpacity,
                 width        : width+"px",
                 height       : height+"px"
             }
@@ -43,15 +47,17 @@ define([
                 top          : rectInset + "px",
                 bottom       : rectInset + "px",
                 position     : "absolute",
-            	background   : "#ffff4e",
-                opacity      : 0.9,
+            	background   : pauseColor,//"#ffff4e",
+                opacity      : pauseRectOpacity,
                 zIndex       : 0,
             	width        : (width*phi)/3.0 + "px",
             	height       : height-(rectInset<<1) + "px"
             };
 
-            for (i=0;i<venLen;i++) {
-                _pause.style.boxShadow = vendors[i]+"inset 4px 2px 2px 2px #cc0";
+            if (pauseBoxShadow !== "none") {
+                for (i=0;i<venLen;i++) {
+                    _pause.style.boxShadow = vendors[i]+pauseBoxShadow;
+                }
             }
             // setting styles
             rect1 = setStyle(rect1, extend(rectStyles, {
