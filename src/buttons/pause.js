@@ -11,8 +11,8 @@ define([
             var _inset   = config.inset || 3;
             var rectInset = config.rectInset || 4; 
             var pauseBGColor = config.pauseBGColor || "#959800";
-            var pauseColor = config.pauseColor || "#959800";
-            var pauseBoxShadow = config.pauseBoxShadow || "inset 4px 2px 2px 2px #cc0";
+            var pauseColor = config.pauseColor || "#eeee00";
+            var pauseBoxShadow = config.pauseBoxShadow || "inset 0px 2px 2px 2px #cc0";
             var pauseRectOpacity = config.pauseRectOpacity || 0.9;
             var pauseOpacity = config.pauseOpacity || 0.8;
             var venLen = vendors.length; 

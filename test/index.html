@@ -20,7 +20,7 @@
             var container = document.getElementById("container");
 
             var divs     = [];
-            var max_divs = 100;
+            var max_divs = 10;
 
             for (var i=0; i<max_divs; i++) {
                 divs.push(document.createElement("div"));
@@ -35,7 +35,7 @@
             //require(["../dist/audio-element.min"], function(AudioElement) {
                 divs.forEach(function(div) {
                     var audioElement = AudioElement({
-                        source: "test/47",
+                        source: "47",
                         fileTypes: ["ogg", "mp3"],
                         buttonRadius: 16 
                     });
